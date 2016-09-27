@@ -1,0 +1,73 @@
+<div class="home-page container">
+	<div class="row category-container">
+		<div class="col-md-4 category" ng-repeat="category in categoryList">
+			<div class="category-box" ng-click="toggleSelectDiv(category.name)">
+				<div class="category-image">
+					<img ng-src="{{category.icon_white}}" alt="no-image"/>
+				</div>
+				<div class="category-text">
+					<h3 class="text-center">{{category.name}}</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="clearSpace"></div>
+	<div class="row services-section" ng-show="selectedDiv != ''">
+		<div class="col-md-12" ng-repeat="category in categoryList" ng-show="selectedDiv == category.name">
+			<div class="services-heading">{{selectedDiv}} Services</div>
+			<div class="row services-box">
+				<div class="col-md-offset-2 col-md-8" ng-repeat="service in category.services" style="border:1px solid; border-radius:10px;padding:15px;margin-bottom:15px;">
+					<!-- Id -->
+					<div class="row">
+						<div class="col-md-2">
+							<h4>Id</h4>
+						</div>
+						<div class="col-md-8">					
+							<input type="text" class="form-control" ng-model="service.id" ng-disabled="service.isDisable">
+						</div>
+					</div>
+					
+					<!-- Title -->
+					<div class="row">
+						<div class="col-md-2">
+							<h4>Title</h4>
+						</div>
+						<div class="col-md-8">					
+							<input type="text" class="form-control" ng-model="service.title" ng-disabled="service.isDisable">
+						</div>
+					</div>
+					
+					<!-- Price -->
+					<div class="row">
+						<div class="col-md-2">
+							<h4>Price</h4>
+						</div>
+						<div class="col-md-8">					
+							<input type="text" class="form-control" ng-model="service.price" ng-disabled="service.isDisable">
+						</div>
+					</div>
+					
+					<!-- Description -->
+					<div class="row">
+						<div class="col-md-2">
+							<h4>Description</h4>
+						</div>
+						<div class="col-md-8">					
+							<textarea class="form-control" style="resize:none; height:100px;" ng-model="service.description" ng-disabled="service.isDisable"></textarea>
+						</div>
+					</div>		
+
+					<div class="clearSpace"></div>
+					<div class="row">
+						<div class="col-md-offset-3 col-md-2">
+							<button class="btn btn-success btn-block" ng-click="toggleEdit(service)">{{btnText}}</button>
+						</div>
+						<div class="col-md-offset-1 col-md-2" ng-if="!service.isDisable">
+							<button class="btn btn-danger btn-block" ng-click="cancelEdit(service)">Cancel</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>		
+	</div>
+</div>
